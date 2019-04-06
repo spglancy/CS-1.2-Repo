@@ -1,9 +1,10 @@
 import random
 import sys
 
+file = open("/usr/share/dict/words", "r")
+words = file.read().split()
+
 def randomWord(numWords):
-  file = open("/usr/share/dict/words", "r")
-  words = file.read().split()
   output = []
   for i in range(int(numWords)):
     output.append(words[random.randint(0, len(words)-1)])
