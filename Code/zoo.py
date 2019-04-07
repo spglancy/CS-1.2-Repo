@@ -1,6 +1,6 @@
 from pprint import pprint
 def get_words(filename):
-  '''Open the file and return all words in it'''
+  '''open the file and return all words in it'''
   words_list = []
   with open(filename) as file:
     for line in file:
