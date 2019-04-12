@@ -19,10 +19,7 @@ def histogram_list(str):
 
 def histogram_tuple(str):
   dict = histogram_dict(str)
-  output = []
-  for i in dict:
-    ouput.append((i, dict[i]))
-  return output
+  return output.items()
 
 def histogram_count(str):
   dict = histogram_dict(str)
