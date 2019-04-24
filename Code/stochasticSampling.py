@@ -1,6 +1,7 @@
 from histogram import histogram_dict
 from random import randint
-def sample(input):
+
+def sample(val):
   dict = histogram_dict(input)
   num = randint(0, sum(dict.values()))
   for i in dict:
