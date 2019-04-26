@@ -2,13 +2,14 @@ from random import choice
 
 def sampleWords(words):
   corpus = str(words).replace('.', ' $Stop $Start')
-  corpus = str(words).replace('!', ' $Stop $Start')
-  corpus = str(words).replace('?', ' $Stop $Start')
+  corpus = str(corpus).replace('!', ' $Stop $Start')
+  corpus = str(corpus).replace('?', ' $Stop $Start')
+  corpus = corpus.replace('"', '')
   corpus = corpus.split()
   pairs = make_pairs(corpus)
   dict = {}
   for word1, word2 in pairs:
-    if word1 in dict.keys():
+    if word1 in dict:
       dict[word1].append(word2)
     else:
       dict[word1] = [word2]
