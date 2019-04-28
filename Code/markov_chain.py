@@ -2,7 +2,7 @@ from random import choice
 
 def sampleWords(words):
   '''
-  Function takes corpus and generates a random sentence based on it.
+  Function takes corpus and generates a random sentence based on it
   '''
   corpus = str(words).replace('.', ' $Stop $Start')
   corpus = str(corpus).replace('!', ' $Stop $Start')
