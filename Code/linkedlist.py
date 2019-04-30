@@ -57,16 +57,21 @@ class LinkedList(object):
         TODO: Running time: O(???) Why and under what conditions?"""
         count = 1
         current = self.head
-        while current.next:
+        while current is not None:
             count += 1
             current = current.next
+        return count
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
         TODO: Running time: O(???) Why and under what conditions?"""
         node = Node(item)
-        self.tail.next = node
-        self.tail = node
+        if self.tail == None:
+            self.head = node
+            self.tail = node
+        else:
+            self.tail.next = node
+            self.tail = node
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
@@ -80,7 +85,7 @@ class LinkedList(object):
         TODO: Best case running time: O(???) Why and under what conditions?
         TODO: Worst case running time: O(???) Why and under what conditions?"""
         current = self.head
-        while current:
+        while current is not None:
             if quality(current.data):
                 return current
 
@@ -88,12 +93,32 @@ class LinkedList(object):
         """Delete the given item from this linked list, or raise ValueError.
         TODO: Best case running time: O(???) Why and under what conditions?
         TODO: Worst case running time: O(???) Why and under what conditions?"""
-        current = self.head
-        while current:
-            current = current.next
-            post = current.next
-            if post.data == item:
-                current.next = post.next
+        pre = self.head
+        current = pre.next
+        if pre.data == item:
+            if self.head.next is not None:
+                self.head = self.head.next
+            else:
+                self.head = None
+                self.tail = None
+        else:
+            while pre is not None:
+                if current is not None:
+                    if current.data == item:
+                        pre.next = current.next
+                        pre = None
+                        if current == self.tail:
+                            self.tail = pre
+                            pre = None
+                else:
+                    if current.next is not None:
+                        pre = pre.next
+                        current = current.next
+                    else:
+                        raise ValueError
+        
+
+
 
 
 
@@ -112,7 +137,7 @@ def test_linked_list():
     print('length: {}'.format(ll.length()))
 
     # Enable this after implementing delete method
-    delete_implemented = False
+    delete_implemented = True
     if delete_implemented:
         print('\nTesting delete:')
         for item in ['B', 'C', 'A']:
