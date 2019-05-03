@@ -54,7 +54,7 @@ class LinkedList(object):
 
     def length(self):
         """Return the length of this linked list by traversing its nodes.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        Running time: O(n) worst case and O(1) best case"""
         count = 1
         current = self.head
         while current is not None:
@@ -64,7 +64,7 @@ class LinkedList(object):
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        Running time: O(1) for lack of loops"""
         node = Node(item)
         if self.tail == None:
             self.head = node
@@ -75,28 +75,31 @@ class LinkedList(object):
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        Running time: O(1) for lack of loops"""
         node = Node(item)
         node.next = self.head
         self.head = node
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
-        TODO: Best case running time: O(???) Why and under what conditions?
-        TODO: Worst case running time: O(???) Why and under what conditions?"""
+        Best case running time: O(1) if the first item is the 
+        Worst case running time: O(n) if the last item in the list is the item we need"""
         current = self.head
         while current is not None:
             if quality(current.data):
                 return current
+            current = current.next
+        return None
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
-        TODO: Best case running time: O(???) Why and under what conditions?
-        TODO: Worst case running time: O(???) Why and under what conditions?"""
+        Best case running time: O(1) if the first item is the item to be deleted
+        Worst case running time: O(n) if the final item is the item to be deleted"""
         pre = self.head
-        current = pre.next
+        if pre.next is not None:
+            current = pre.next
         if pre.data == item:
-            if self.head.next is not None:
+            if pre.next is not None:
                 self.head = self.head.next
             else:
                 self.head = None
@@ -105,11 +108,11 @@ class LinkedList(object):
             while pre is not None:
                 if current is not None:
                     if current.data == item:
-                        pre.next = current.next
-                        pre = None
                         if current == self.tail:
                             self.tail = pre
                             pre = None
+                        else:
+                            pre.next = current.next
                 else:
                     if current.next is not None:
                         pre = pre.next
