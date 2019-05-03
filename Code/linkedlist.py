@@ -55,7 +55,7 @@ class LinkedList(object):
     def length(self):
         """Return the length of this linked list by traversing its nodes.
         Running time: O(n) worst case and O(1) best case"""
-        count = 1
+        count = 0
         current = self.head
         while current is not None:
             count += 1
@@ -79,6 +79,8 @@ class LinkedList(object):
         node = Node(item)
         node.next = self.head
         self.head = node
+        if self.tail is None:
+            self.tail = node
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
@@ -87,7 +89,7 @@ class LinkedList(object):
         current = self.head
         while current is not None:
             if quality(current.data):
-                return current
+                return current.data
             current = current.next
         return None
 
@@ -95,30 +97,33 @@ class LinkedList(object):
         """Delete the given item from this linked list, or raise ValueError.
         Best case running time: O(1) if the first item is the item to be deleted
         Worst case running time: O(n) if the final item is the item to be deleted"""
-        pre = self.head
-        if pre.next is not None:
-            current = pre.next
-        if pre.data == item:
-            if pre.next is not None:
-                self.head = self.head.next
-            else:
-                self.head = None
-                self.tail = None
-        else:
-            while pre is not None:
-                if current is not None:
-                    if current.data == item:
-                        if current == self.tail:
-                            self.tail = pre
-                            pre = None
-                        else:
-                            pre.next = current.next
+        current = self.head
+        last = None
+        searching = True
+        while searching:
+            if current is not None:
+                if current.data == item:
+                    if current == self.head:
+                        self.head = current.next
+                        searching = False
+                    if current == self.tail:
+                        self.tail = last
+                        if last is not None:
+                            last.next = None
+                        searching = False
+                    else:
+                        if last is not None:
+                            last.next = current.next
+                        searching = False
                 else:
                     if current.next is not None:
-                        pre = pre.next
+                        last = current
                         current = current.next
                     else:
-                        raise ValueError
+                        raise ValueError('Item not found: {}'.format(item))
+                    
+            else:
+                raise ValueError('Item not found: {}'.format(item))
         
 
 
