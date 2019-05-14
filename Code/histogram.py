@@ -1,9 +1,9 @@
 from pprint import pprint
-str = "it a string a string string"
-def histogram_dict(str):
-  str = str.split()
+word = "it a string a string string"
+def histogram_dict(word):
+  word = word.split()
   count = {}
-  for i in str:
+  for i in word:
     if i in count:
       count[i] += 1
     else:
@@ -36,7 +36,7 @@ def unique_words(hist):
   return len(hist.values())
 
 if __name__ == '__main__':
-  val = histogram_list(str)
+  val = histogram_list(word)
   # val2 = unique_words(val)
   print(val)
   # print(val2)
