@@ -24,8 +24,16 @@ def sampleWords(words, order):
       dict[group[0]].add_count(group[1])
     else:
       dict[group[0]] = dictogram.Dictogram([group[1]])
-  output = []  
-  current = ('$Stop', '$Start')
+  output = []
+  tokens = []
+  for item in list(dict.keys()):
+    if item[0] == '$Start':
+      tokens.append(item)
+  start = choice(tokens)
+  for word in start:
+    output.append(word)
+  output.pop(0)
+  current = start
   running = True
   while running:
     word = sampling.sample(dict[current])
@@ -50,4 +58,4 @@ def make_groups(corpus, order):
 
 if __name__ == '__main__':
   book = open('book.txt', 'r').read()
-  print(sampleWords(book, 2))
+  print(sampleWords(book, 3))

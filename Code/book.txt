@@ -1,8 +1,5 @@
-Foreword 
 
-
-
-This tale grew in the telling, until it became a history of the Great 
+$Start This tale grew in the telling, until it became a history of the Great 
 War of the Ring and included many glimpses of the yet more ancient history 
 that preceded it. It was begun soon after The Hobbit was written and before 
 its publication in 1937; but I did not go on with this sequel, for I wished 
@@ -32016,5 +32013,5 @@ At last the three companions turned away, and never again looking back they rode
 
 At last they rode over the downs and took the East Road, and then Merry and Pippin rode on to Buckland; and already they were singing again as they went. But Sam turned to Bywater, and so came back up the Hill, as day was ending once more. And he went on, and there was yellow light, and fire within; and the evening meal was ready, and he was expected. And Rose drew him in, and set him in his chair, and put little Elanor upon his lap.
 
-He drew a deep breath. ‘Well, I’m back,’ he said.
+He drew a deep breath. ‘Well, I’m back,’ he said $Stop
 
